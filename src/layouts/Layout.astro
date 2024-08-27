@@ -1,50 +1,80 @@
 ---
+import "@/styles/global.css";
+// import NavBar from "@/components/navbar/NavBar";
+import NavBar from "@/components/navbar/Links.astro";
+import ThemeToggle from "@/components/navbar/ThemeToggle.astro";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="bg-white text-black dark:bg-black dark:text-white transition-all duration-500"
+  >
+    <nav
+      class="flex justify-between items-center w-full border-b-black border-b-2 dark:border-b-white px-5"
+    >
+      <NavBar />
+      <ThemeToggle />
+    </nav>
+    <slot />
+  </body>
+
+  <script>
+    // Reused Storage Keys
+    const ThemeKey = "theme";
+    // Get saved theme setting from localStorage
+    const theme = localStorage.getItem(ThemeKey);
+    if (!theme) {
+      // if no theme set theme to
+      // Prefered System Theme
+      const SystemPref = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
+      localStorage.setItem(ThemeKey, SystemPref);
+    }
+    // Toggle dark class
+    document.documentElement.classList.toggle("dark", theme === "dark");
+
+    // listen to storage changes
+    window.addEventListener("storage", (Event) => {
+      console.log(Event);
+      switch (Event.key) {
+        // if theme, toggle dark class
+        case ThemeKey:
+          document.documentElement.classList.toggle(
+            "dark",
+            Event.newValue === "dark",
+          );
+          break;
+        // if oneko, toggle oneko elements
+        case "oneko":
+          console.log("nuyaaw");
+          if (Event.newValue === "off") {
+            document.getElementById("oneko")?.remove();
+            document.getElementById("oneko-script")?.remove();
+          } else {
+            const NekoScript = document.createElement("script");
+            NekoScript.src = "/oneko/oneko.js";
+            NekoScript.id = "oneko-script";
+            document.body.appendChild(NekoScript);
+          }
+          break;
+      }
+    });
+  </script>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.projects-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
+  gap: 10px;
+  text-align: center;
+  justify-content: center;
+  & .project-card {
+    padding: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.project-card:hover {
+  &.active {
+    box-shadow: 0 0 10px 5px var(--project-card-active);
+  }
+  &.paused {
+    box-shadow: 0 0 10px 5px var(--project-card-paused);
+  }
+  &.discontinued {
+    box-shadow: 0 0 10px 5px var(--project-card-discontinued);
+  }
+  &.unknown {
+    box-shadow: 0 0 10px 5px var(--project-card-unknown);
+  }
+}
+
+a.link {
+  @apply text-blue-500	 underline;
+  &:hover {
+    @apply text-blue-700;
+  }
+}
+
+.obj-scale {
+  @apply transition-all duration-300 ease-linear cursor-pointer hover:scale-125;
+}
+
+.active-path {
+  @apply transition-all duration-300 ease-linear cursor-pointer text-green-500 hover:text-green-700;
+}
+
+.gitbot-guide code {
+  @apply bg-slate-300 p-[2px] rounded dark:bg-slate-800;
+}
