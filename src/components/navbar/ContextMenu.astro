@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div
+  id="context-menu"
+  data-state="closed"
+  class="absolute data-[state=closed]:hidden data-[state=open]:block rounded-md border p-1 animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 bg-white dark:bg-black text-black dark:text-white border-black dark:border-white"
+>
+  <ul
+    class="flex flex-col rounded-md shadow-xl overflow-hidden hover:*:!bg-black hover:*:!text-white dark:hover:*:!bg-white dark:hover:*:!text-black"
+  >
+    <li class="context-menu-item" data-disabled>
+      Grats! You found the hidden menu!
+    </li>
+    <li onclick="HandleTheme()" class="context-menu-item" data-state>
+      <Icon name="sun" class="flex dark:hidden context-menu-icon" />
+      <Icon name="moon" class="hidden dark:flex context-menu-icon" />
+      Toggle Theme
+    </li>
+    <li
+      id="oneko-toggle"
+      onclick="HandleOneko()"
+      class="context-menu-item"
+      data-state
+    >
+      <Icon name="check" class="hidden context-menu-icon" />
+      Oneko
+    </li>
+  </ul>
+</div>
+
+<style>
+  .context-menu-item {
+    @apply relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 data-[state]:py-1.5 data-[state]:pl-8 data-[state]:pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
+    /* @apply relative cursor-pointer  hover:bg-gray-200 dark:hover:bg-gray-800 p-4 w-full h-full text-gray-800 dark:text-gray-200 transition-all ease-linear; */
+    &[data-state="checked"] > .context-menu-icon {
+      @apply flex;
+    }
+    .context-menu-icon {
+      @apply absolute left-2 h-3.5 w-3.5 items-center justify-center;
+    }
+  }
+</style>
+
+<script>
+  const menu = document.getElementById("context-menu")!;
+  // hide menu if its open
+  document.onclick = hideMenu;
+  document.onauxclick = hideMenu;
+  // open the context menu
+  document.oncontextmenu = rightClick;
+
+  function hideMenu() {
+    menu.dataset.state = "closed";
+  }
+
+  function showMenu() {
+    menu.dataset.state = "open";
+  }
+
+  function rightClick(e: MouseEvent) {
+    if (!e.ctrlKey) return;
+    e.preventDefault();
+
+    // Calculate the dimensions of the menu
+    //? Displaying it since `display: none` elements return 0
+    menu.style.display = "block";
+    const menuWidth = menu.clientWidth;
+    const menuHeight = menu.clientHeight;
+    menu.style.display = "";
+
+    // Determine position for the menu
+    let posX = e.pageX;
+    let posY = e.pageY;
+
+    // Check if the menu goes beyond the right edge of the window
+    if (posX + menuWidth > window.innerWidth) {
+      posX = window.innerWidth - menuWidth;
+    }
+
+    // Check if the menu goes beyond the bottom edge of the window
+    if (posY + menuHeight > window.innerHeight) {
+      posY = window.innerHeight - menuHeight;
+    }
+
+    // Set the position of the menu
+    menu.style.left = posX + "px";
+    menu.style.top = posY + "px";
+
+    // show menu
+    showMenu();
+  }
+</script>
