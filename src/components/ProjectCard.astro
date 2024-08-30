@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const { input } = Astro.props as {
+interface Props {
   input: {
     name: string;
     description: string;
@@ -9,7 +9,9 @@ const { input } = Astro.props as {
     repo?: { url: string; target?: string };
     status: "active" | "paused" | "discontinued" | "unknown";
   };
-};
+}
+
+const { input } = Astro.props;
 ---
 
 <div
@@ -24,6 +26,7 @@ const { input } = Astro.props as {
           target={input.demo.target || "_blank"}
           href={input.demo.url}
           class="obj-scale"
+          aria-label={input.name + " demo url"}
         >
           <Icon name="earth" size="24" />
         </a>
@@ -35,6 +38,7 @@ const { input } = Astro.props as {
           target={input.repo.target || "_blank"}
           href={input.repo.url}
           class="obj-scale"
+          aria-label={input.name + " github repo url"}
         >
           <Icon name="github" size="24" />
         </a>
