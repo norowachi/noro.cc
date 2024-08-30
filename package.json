@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --ignore-path .gitignore --write src"
   },
   "keywords": [],
   "author": "Andrew <contact@norowa.dev>",

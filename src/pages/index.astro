@@ -59,12 +59,12 @@ function ReturnProjects(): {
 }
 ---
 
-<Layout title="Noro">
+<Layout>
   <main>
     <div class="flex justify-evenly items-center pt-8">
       <div class="float-left dark:invert">
         <img
-          src="/images/noro-avatar.png"
+          src="/images/noro-avatar.webp"
           alt="Noro's Avatar"
           width={128}
           height={128}
@@ -83,6 +83,7 @@ function ReturnProjects(): {
     <a
       class="fixed bottom-3 right-2 p-3 cursor-help bg-white dark:bg-black border-2 border-dotted border-black dark:border-white rounded-md hover:bg-black hover:dark:bg-white hover:text-white hover:dark:text-black hover:border-solid transition-all duration-700 hover:animate-pulse focus:animate-ping"
       href="/credits"
+      aria-label="Go to Credits page"
     >
       Credits
     </a>
