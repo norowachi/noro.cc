@@ -1,9 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
+
+interface Props {
+  targetId?: string;
+}
+
+const { targetId } = Astro.props;
 ---
 
 <div
   id="context-menu"
+  data-id={targetId}
   data-state="closed"
   class="absolute data-[state=closed]:hidden data-[state=open]:block rounded-md border p-1 animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 bg-white dark:bg-black text-black dark:text-white border-black dark:border-white"
 >
@@ -32,8 +39,7 @@ import { Icon } from "astro-icon/components";
 
 <style>
   .context-menu-item {
-    @apply relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 data-[state]:py-1.5 data-[state]:pl-8 data-[state]:pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
-    /* @apply relative cursor-pointer  hover:bg-gray-200 dark:hover:bg-gray-800 p-4 w-full h-full text-gray-800 dark:text-gray-200 transition-all ease-linear; */
+    @apply relative flex cursor-pointer select-none items-center rounded-md px-2 py-1.5 data-[state]:py-1.5 data-[state]:pl-8 data-[state]:pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
     &[data-state="checked"] > .context-menu-icon {
       @apply flex;
     }
@@ -45,22 +51,17 @@ import { Icon } from "astro-icon/components";
 
 <script>
   const menu = document.getElementById("context-menu")!;
+  const target = menu.dataset.id
+    ? document.getElementById(menu.dataset.id)!
+    : document;
   // hide menu if its open
+  const hideMenu = () => (menu.dataset.state = "closed");
   document.onclick = hideMenu;
   document.onauxclick = hideMenu;
   // open the context menu
-  document.oncontextmenu = rightClick;
-
-  function hideMenu() {
-    menu.dataset.state = "closed";
-  }
-
-  function showMenu() {
-    menu.dataset.state = "open";
-  }
+  target.oncontextmenu = rightClick;
 
   function rightClick(e: MouseEvent) {
-    if (!e.ctrlKey) return;
     e.preventDefault();
 
     // Calculate the dimensions of the menu
@@ -89,6 +90,6 @@ import { Icon } from "astro-icon/components";
     menu.style.top = posY + "px";
 
     // show menu
-    showMenu();
+    menu.dataset.state = "open";
   }
 </script>
