@@ -10,27 +10,33 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+// saving the navbar id for context menu
+const navbar = "navbar";
 ---
 
 <!doctype html>
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title ? `${title} | Noro` : "Noro"}</title>
+    <slot name="head">
+      <link rel="icon" href="/favicon.ico" />
+      <title>{title ? `${title} | Noro` : "Noro"}</title>
+      <meta name="description" content="Astro description" />
+    </slot>
   </head>
   <body
     class="bg-white text-black dark:bg-black dark:text-white transition-all duration-500"
   >
     <nav
+      id={navbar}
       class="flex justify-between items-center w-full px-5 border-b-2 border-b-black dark:border-b-white"
     >
       <Links />
       <ThemeToggle />
-      <ContextMenu />
+      <ContextMenu targetId={navbar} />
     </nav>
     <slot />
   </body>
