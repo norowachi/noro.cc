@@ -2,75 +2,75 @@
 import { Icon } from "astro-icon/components";
 
 interface Props {
-	icon: string;
-	show: boolean;
+  icon: string;
+  show: boolean;
 }
 
 const { icon, show } = Astro.props;
 ---
 
 <div id="alert" data-show={show.toString()}>
-	<div class="fixed inset-0 transition-opacity overlay">
-		<div class="fixed inset-0 bg-black opacity-75"></div>
-	</div>
-	<div
-		class="bg-white dark:bg-black border-2 rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6 dialog"
-	>
-		<div class="text-center">
-			<p class="inline-flex">
-				<Icon name={icon} class="h-5 w-5 mr-2 mt-1" />
-				<slot name="title" />
-			</p>
-			<div class="mt-2">
-				<p class="text-sm leading-5 text-slate-500">
-					<slot name="description" />
-				</p>
-			</div>
-		</div>
-		<div class="mt-5 sm:mt-6">
-			<span class="flex rounded-md w-full shadow-sm">
-				<button
-					type="button"
-					class="inline-flex justify-center w-full rounded-md border border-white dark:border-black px-4 py-2 bg-black dark:bg-white text-base leading-6 font-semibold text-white dark:text-black shadow-sm hover:invert focus:invert transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-				>
-					<slot name="button" />
-				</button>
-			</span>
-		</div>
-	</div>
+  <div class="fixed inset-0 transition-opacity overlay">
+    <div class="fixed inset-0 bg-black opacity-75"></div>
+  </div>
+  <div
+    class="bg-white dark:bg-black border-2 rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6 dialog"
+  >
+    <div class="text-center">
+      <p class="inline-flex">
+        <Icon name={icon} class="h-5 w-5 mr-2 mt-1" />
+        <slot name="title" />
+      </p>
+      <div class="mt-2">
+        <p class="text-sm leading-5 text-slate-500">
+          <slot name="description" />
+        </p>
+      </div>
+    </div>
+    <div class="mt-5 sm:mt-6">
+      <span class="flex rounded-md w-full shadow-sm">
+        <button
+          type="button"
+          class="inline-flex justify-center w-full rounded-md border border-white dark:border-black px-4 py-2 bg-black dark:bg-white text-base leading-6 font-semibold text-white dark:text-black shadow-sm hover:invert focus:invert transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+        >
+          <slot name="button" />
+        </button>
+      </span>
+    </div>
+  </div>
 </div>
 
 <script>
-	const alert = document.getElementById("alert")!;
+  const alert = document.getElementById("alert")!;
 
-	alert.onclick = () => {
-		alert.dataset.show = "false";
-		// remove it after 300ms, right after transition duration
-		setTimeout(() => (alert.style.display = "none"), 300);
-	};
+  alert.onclick = () => {
+    alert.dataset.show = "false";
+    // remove it after 300ms, right after transition duration
+    setTimeout(() => (alert.style.display = "none"), 300);
+  };
 </script>
 
 <style>
-	#alert {
-		@apply fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center;
-	}
+  #alert {
+    @apply fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center;
+  }
 
-	#alert[data-show="true"] {
-		.overlay {
-			@apply ease-out duration-300 opacity-100;
-		}
-		.dialog {
-			@apply ease-out duration-300 opacity-100 translate-y-0 sm:scale-100;
-		}
-	}
+  #alert[data-show="true"] {
+    .overlay {
+      @apply ease-out duration-300 opacity-100;
+    }
+    .dialog {
+      @apply ease-out duration-300 opacity-100 translate-y-0 sm:scale-100;
+    }
+  }
 
-	#alert[data-show="false"] {
-		@apply hidden;
-		.overlay {
-			@apply ease-in duration-200 opacity-0;
-		}
-		.dialog {
-			@apply ease-in duration-200 opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95;
-		}
-	}
+  #alert[data-show="false"] {
+    @apply hidden;
+    .overlay {
+      @apply ease-in duration-200 opacity-0;
+    }
+    .dialog {
+      @apply ease-in duration-200 opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95;
+    }
+  }
 </style>
