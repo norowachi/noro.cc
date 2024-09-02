@@ -1,0 +1,24 @@
+---
+const pathname = Astro.url.pathname;
+---
+
+<div class="flex mr-auto font-semibold font-heading space-x-4">
+  <a
+    class={`p-4 ${pathname == "/" ? "active-path" : "obj-scale"}`}
+    href="/"
+    aria-label="Go to Home page"
+  >
+    Home
+  </a>
+  <span class="border-l-2 border-black dark:border-white"></span>
+  <a
+    class={`p-4 ${
+      pathname.startsWith("/gitbot") ? "active-path" : "obj-scale"
+    }`}
+    href="/gitbot"
+    aria-label="Go to Gitbot page"
+  >
+    Gitbot
+  </a>
+  <span class="border-l-2 border-black dark:border-white"></span>
+</div>

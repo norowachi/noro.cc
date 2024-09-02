@@ -1,0 +1,12 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button
+  onclick="HandleTheme()"
+  class="border-2 border-black dark:border-white rounded-md p-2 bg-white dark:bg-black text-black dark:text-white transition-colors duration-150 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black"
+>
+  <Icon class="block dark:hidden" name="sun" size="24" />
+  <Icon class="hidden dark:block" name="moon" size="24" />
+  <span class="sr-only">Toggle theme</span>
+</button>
