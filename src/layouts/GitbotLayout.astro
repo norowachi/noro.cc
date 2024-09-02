@@ -2,23 +2,24 @@
 import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
-  title?: string;
+	title?: string;
 }
 
 const { title } = Astro.props;
+
+const finalTitle = title ? `${title} | Gitbot` : "Gitbot";
+const description = "A Discord Bot integrated with the GitHub API";
 ---
 
 <BaseLayout>
-  <Fragment slot="head">
-    <link rel="icon" href="/images/git-logo.webp" />
-    <title>{title ? `${title} | Gitbot` : "Gitbot"}</title>
-    <meta
-      name="description"
-      content="A Discord Bot integrated with the GitHub API"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Gitbot" />
-    <meta name="twitter:image" content="/images/git-logo.webp" />
-  </Fragment>
-  <slot />
+	<Fragment slot="head">
+		<link rel="icon" href="/images/git-logo.webp" />
+		<title>{finalTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={finalTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/images/git-logo.webp" />
+	</Fragment>
+	<slot />
 </BaseLayout>
