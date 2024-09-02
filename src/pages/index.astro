@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 function ReturnProjects(): {
@@ -59,7 +59,7 @@ function ReturnProjects(): {
 }
 ---
 
-<Layout>
+<BaseLayout>
   <main>
     <div class="flex justify-evenly items-center pt-8">
       <div class="float-left dark:invert">
@@ -88,4 +88,4 @@ function ReturnProjects(): {
       Credits
     </a>
   </main>
-</Layout>
+</BaseLayout>
