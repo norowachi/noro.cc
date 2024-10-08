@@ -30,10 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/norowachi/norowa.dev.git"
+    "url": "git+https://github.com/Noro95/norowa.dev.git"
   },
   "bugs": {
-    "url": "https://github.com/norowachi/norowa.dev/issues"
+    "url": "https://github.com/Noro95/norowa.dev/issues"
   },
-  "homepage": "https://github.com/norowachi/norowa.dev#readme"
+  "homepage": "https://github.com/Noro95/norowa.dev#readme"
 }
