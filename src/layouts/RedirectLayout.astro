@@ -1,0 +1,29 @@
+---
+import AlertDialog from "@/components/AlertDialog.astro";
+import Base from "@/pages/index.astro";
+
+interface Props {
+	Link: string;
+}
+
+const { Link } = Astro.props;
+---
+
+<title>Redirecting...</title>
+<meta http-equiv="refresh" content={`0;url=${Link}`} />
+<meta name="robots" content="noindex" />
+<link rel="canonical" href={Link} />
+<Base>
+	<AlertDialog show={true} icon="circle-check-big">
+		<Fragment slot="title">Redirecting...</Fragment>
+		<Fragment slot="description">
+			External redirection in progress, if you&apos;re stuck click the button
+			below or anywhere else to cancel.
+		</Fragment>
+		<Fragment slot="button">
+			<a href={Link}>
+				Go to {Link.length > 38 ? Link.slice(8, 30) + "..." : Link.slice(8)}
+			</a>
+		</Fragment>
+	</AlertDialog>
+</Base>
