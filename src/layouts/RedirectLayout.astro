@@ -1,19 +1,25 @@
 ---
 import AlertDialog from "@/components/AlertDialog.astro";
-import Base from "@/pages/index.astro";
+import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
 	Link: string;
 }
 
 const { Link } = Astro.props;
+
+const random = (min: number, max: number) =>
+	Math.floor(Math.random() * max + min);
 ---
 
-<title>Redirecting...</title>
-<meta http-equiv="refresh" content={`0;url=${Link}`} />
-<meta name="robots" content="noindex" />
-<link rel="canonical" href={Link} />
-<Base>
+<BaseLayout>
+	<Fragment slot="head">
+		<title>Redirecting...</title>
+		<meta name="description" content={`External redirection to ${Link}`} />
+		<meta http-equiv="refresh" content={`0;url=${Link}`} />
+		<meta name="robots" content="noindex" />
+		<link rel="canonical" href={Link} />
+	</Fragment>
 	<AlertDialog show={true} icon="circle-check-big">
 		<Fragment slot="title">Redirecting...</Fragment>
 		<Fragment slot="description">
@@ -26,4 +32,50 @@ const { Link } = Astro.props;
 			</a>
 		</Fragment>
 	</AlertDialog>
-</Base>
+	<div
+		class="absolute z-[-1] top-0 left-0 w-full h-full bg-gradient-to-b dark:from-[#123] from-[#FED] to-[#111] cursor-default"
+		style="animation: forwards linear; animation-delay: 7s, 8s;"
+	>
+		<div
+			class="absolute top-0 left-0 w-full h-full overflow-hidden *:text-[50px] *:absolute *:top-[-5vh]"
+		>
+			{
+				Array.from({ length: 50 }).map(() => (
+					<div
+						class="snow"
+						style={`--left-ini: ${random(-10, 10)}vw; --left-end: ${random(-10, 10)}vw; left: ${random(10, 90)}vw; animation: snowfall ${random(6, 15)}s linear infinite; animation-delay: ${random(-9, -1)}s;`}
+					>
+						&#10052;
+					</div>
+				))
+			}
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	@keyframes snowfall {
+		0% {
+			transform: translate3d(var(--left-ini), 0, 0);
+		}
+
+		100% {
+			transform: translate3d(var(--left-end), 110vh, 0);
+		}
+	}
+
+	.snow:nth-child(2n) {
+		filter: blur(1px);
+		font-size: 40px;
+	}
+
+	.snow:nth-child(6n) {
+		filter: blur(2px);
+		font-size: 30px;
+	}
+
+	.snow:nth-child(10n) {
+		filter: blur(5px);
+		font-size: 30px;
+	}
+</style>

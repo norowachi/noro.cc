@@ -6,7 +6,7 @@ import ThemeToggle from "@/components/navbar/ThemeToggle.astro";
 import ContextMenu from "@/components/navbar/ContextMenu.astro";
 
 interface Props {
-  title?: string;
+	title?: string;
 }
 
 const { title } = Astro.props;
@@ -19,94 +19,94 @@ const navbar = "navbar";
 
 <!doctype html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <slot name="head">
-      <link rel="icon" href="/favicon.ico" />
-      <title>{finalTitle}</title>
-      <meta
-        name="description"
-        content="I'm Noro! A developer or so (* ￣︿￣) welcome to my site ~built with Astro"
-      />
-    </slot>
-  </head>
-  <body
-    class="bg-white text-black dark:bg-black dark:text-white transition-all duration-500"
-  >
-    <nav
-      id={navbar}
-      class="flex justify-between items-center w-full px-5 border-b-2 border-b-black dark:border-b-white"
-    >
-      <Links />
-      <ThemeToggle />
-      <ContextMenu targetId={navbar} />
-    </nav>
-    <slot />
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<slot name="head">
+			<link rel="icon" href="/favicon.ico" />
+			<title>{finalTitle}</title>
+			<meta
+				name="description"
+				content="I'm Noro! A developer or so (* ￣︿￣) welcome to my site ~built with Astro"
+			/>
+		</slot>
+	</head>
+	<body
+		class="bg-white text-black dark:bg-black dark:text-white transition-all duration-500"
+	>
+		<nav
+			id={navbar}
+			class="flex justify-between items-center w-full px-5 border-b-2 border-b-black dark:border-b-white"
+		>
+			<Links />
+			<ThemeToggle />
+			<ContextMenu targetId={navbar} />
+		</nav>
+		<slot />
+	</body>
 </html>
 
 <script is:inline>
-  HandleTheme(false);
-  HandleOneko(false);
+	HandleTheme(false);
+	HandleOneko(false);
 
-  function HandleTheme(toggle = true) {
-    // get old theme
-    let oldOption = localStorage.getItem("theme");
-    if (!oldOption) {
-      oldOption = window.matchMedia(`(prefers-color-scheme: dark)`).matches
-        ? "dark"
-        : "light";
-      localStorage.setItem("theme", oldOption);
-    }
-    // init new theme
-    let newOption;
-    // if its a toggle
-    if (toggle) {
-      // switch themes and save
-      newOption = oldOption === "dark" ? "light" : "dark";
-      localStorage.setItem("theme", newOption);
-    }
-    // toggle the "dark" class to html tag
-    document.documentElement.classList.toggle(
-      "dark",
-      newOption === "dark" || (!toggle && oldOption === "dark"),
-    );
-    // toggle the "light" class
-    //? this is just cuz i dont wanna leave html tag with a [ class="" ] :3
-    document.documentElement.classList.toggle(
-      "light",
-      newOption === "light" || (!toggle && oldOption === "light"),
-    );
-  }
+	function HandleTheme(toggle = true) {
+		// get old theme
+		let oldOption = localStorage.getItem("theme");
+		if (!oldOption) {
+			oldOption = window.matchMedia(`(prefers-color-scheme: dark)`).matches
+				? "dark"
+				: "light";
+			localStorage.setItem("theme", oldOption);
+		}
+		// init new theme
+		let newOption;
+		// if its a toggle
+		if (toggle) {
+			// switch themes and save
+			newOption = oldOption === "dark" ? "light" : "dark";
+			localStorage.setItem("theme", newOption);
+		}
+		// toggle the "dark" class to html tag
+		document.documentElement.classList.toggle(
+			"dark",
+			newOption === "dark" || (!toggle && oldOption === "dark")
+		);
+		// toggle the "light" class
+		//? this is just cuz i dont wanna leave html tag with a [ class="" ] :3
+		document.documentElement.classList.toggle(
+			"light",
+			newOption === "light" || (!toggle && oldOption === "light")
+		);
+	}
 
-  function HandleOneko(toggle = true) {
-    // get old option
-    const oldOption = localStorage.getItem("oneko");
-    // init new option
-    let newOption;
-    // if its a toggle
-    if (toggle) {
-      // if it was on, switch off, else turn on
-      newOption = oldOption === "on" ? "off" : "on";
-      localStorage.setItem("oneko", newOption);
-    }
-    // get context menu item
-    const onekoToggle = document.getElementById("oneko-toggle");
-    // update item state
-    onekoToggle.dataset.state =
-      (newOption || oldOption) === "on" ? "checked" : "unchecked";
-    // create oneko elements, if new option is on / it wasnt a toggle & old is on
-    if (newOption === "on" || (!toggle && oldOption === "on")) {
-      const NekoScript = document.createElement("script");
-      NekoScript.src = "/oneko/oneko.js";
-      NekoScript.id = "oneko-script";
-      document.body.appendChild(NekoScript);
-    } else {
-      // else just remove oneko stuff
-      document.getElementById("oneko")?.remove();
-      document.getElementById("oneko-script")?.remove();
-    }
-  }
+	function HandleOneko(toggle = true) {
+		// get old option
+		const oldOption = localStorage.getItem("oneko");
+		// init new option
+		let newOption;
+		// if its a toggle
+		if (toggle) {
+			// if it was on, switch off, else turn on
+			newOption = oldOption === "on" ? "off" : "on";
+			localStorage.setItem("oneko", newOption);
+		}
+		// get context menu item
+		const onekoToggle = document.getElementById("oneko-toggle");
+		// update item state
+		onekoToggle.dataset.state =
+			(newOption || oldOption) === "on" ? "checked" : "unchecked";
+		// create oneko elements, if new option is on / it wasnt a toggle & old is on
+		if (newOption === "on" || (!toggle && oldOption === "on")) {
+			const NekoScript = document.createElement("script");
+			NekoScript.src = "/oneko/oneko.js";
+			NekoScript.id = "oneko-script";
+			document.body.appendChild(NekoScript);
+		} else {
+			// else just remove oneko stuff
+			document.getElementById("oneko")?.remove();
+			document.getElementById("oneko-script")?.remove();
+		}
+	}
 </script>
