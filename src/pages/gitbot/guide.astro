@@ -177,10 +177,12 @@ import GitbotLayout from "@/layouts/GitbotLayout.astro";
 
 <script>
   const alert = document.getElementById("alert");
-  if (alert && location.search.includes("success")) {
-    alert.dataset.show = "true";
-    document
-      .getElementById("getting-started")
-      ?.classList.toggle("hidden", true);
+  if (alert) {
+    if (location.search.includes("success")) {
+      alert.dataset.show = "true";
+      document
+        .getElementById("getting-started")
+        ?.classList.toggle("hidden", true);
+    } else alert.classList.toggle("!hidden", true);
   }
 </script>

@@ -2,93 +2,93 @@
 import GitbotLayout from "@/layouts/GitbotLayout.astro";
 
 function Links() {
-  return [
-    {
-      name: "Terms of Service",
-      link: "/gitbot/terms",
-      blank: false,
-    },
-    {
-      name: "Privacy Policy",
-      link: "/gitbot/privacy",
-      blank: false,
-    },
-    {
-      name: "Invite Gitbot",
-      link: "/gitbot/invite",
-      blank: true,
-    },
-    {
-      name: "GitHub Repository",
-      link: "https://github.com/Noro95/gitbot",
-      blank: true,
-    },
-    {
-      name: "Support Server",
-      link: "/discord",
-      blank: true,
-    },
-    {
-      name: "Usage Guide",
-      link: "/gitbot/guide",
-      blank: false,
-    },
-    // {
-    // 	name: "Documentation",
-    // 	link: "#",
-    // },
-    // {
-    // 	name: "Changelog",
-    // 	link: "/gitbot/changelog",
-    // },
-  ];
+	return [
+		{
+			name: "Terms of Service",
+			link: "/gitbot/terms",
+			blank: false,
+		},
+		{
+			name: "Privacy Policy",
+			link: "/gitbot/privacy",
+			blank: false,
+		},
+		{
+			name: "Invite Gitbot",
+			link: "/gitbot/invite",
+			blank: true,
+		},
+		{
+			name: "GitHub Repository",
+			link: "/gitbot/repo",
+			blank: true,
+		},
+		{
+			name: "Support Server",
+			link: "/discord",
+			blank: true,
+		},
+		{
+			name: "Usage Guide",
+			link: "/gitbot/guide",
+			blank: false,
+		},
+		// {
+		// 	name: "Documentation",
+		// 	link: "#",
+		// },
+		// {
+		// 	name: "Changelog",
+		// 	link: "/gitbot/changelog",
+		// },
+	];
 }
 ---
 
 <GitbotLayout>
-  <main class="flex justify-center items-center mt-10 p-[2%]">
-    <div class="float-left invert dark:invert-0">
-      <img
-        src="/images/git-logo.webp"
-        alt="Git Logo"
-        width={128}
-        height={128}
-        class="rounded-full"
-      />
-    </div>
-    <div class="flex flex-col items-center justify-evenly px-2">
-      <h1 class="text-4xl font-bold">Gitbot</h1>
-      <p class="text-lg font-semibold">
-        A Discord Bot integrated with the GitHub API
-      </p>
-    </div>
-  </main>
-  <div class="flex flex-col items-center mt-8 text-lg">
-    <span class="text-2xl font-black">Useful Links</span>
-    <ul class="grid grid-cols-2 justify">
-      {
-        Links().map((item) => {
-          return (
-            <li>
-              <a
-                href={item.link}
-                target={item.blank ? "_blank" : ""}
-                class="link"
-              >
-                {item.name}
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
-    <div class="mt-12">
-      <iframe
-        src="https://github.com/sponsors/Noro95/button"
-        title="Sponsor Noro95"
-        height="32"
-        width="115"
-        class="border-0 rounded-md"></iframe>
-    </div>
-  </div>
+	<main class="flex justify-center items-center mt-10 p-[2%]">
+		<div class="float-left invert dark:invert-0">
+			<img
+				src="/images/git-logo.webp"
+				alt="Git Logo"
+				width={128}
+				height={128}
+				class="rounded-full"
+			/>
+		</div>
+		<div class="flex flex-col items-center justify-evenly px-2">
+			<h1 class="text-4xl font-bold">Gitbot</h1>
+			<p class="text-lg font-semibold">
+				A Discord Bot integrated with the GitHub API
+			</p>
+		</div>
+	</main>
+	<div class="flex flex-col items-center mt-8 text-lg">
+		<span class="text-2xl font-black">Useful Links</span>
+		<ul class="grid grid-cols-2 justify">
+			{
+				Links().map((item) => {
+					return (
+						<li>
+							<a
+								href={item.link}
+								target={item.blank ? "_blank" : "_self"}
+								class="link"
+							>
+								{item.name}
+							</a>
+						</li>
+					);
+				})
+			}
+		</ul>
+		<div class="mt-12">
+			<iframe
+				src="https://github.com/sponsors/norowachi/button"
+				title="Sponsor norowachi"
+				height="32"
+				width="115"
+				class="border-0 rounded-md"></iframe>
+		</div>
+	</div>
 </GitbotLayout>
