@@ -1,6 +1,6 @@
-# norowa.dev
+# noro.cc
 
-This is the source code for [my personal website](https://norowa.dev).
+This is the source code for [my personal website](https://noro.cc).
 
 ---
 

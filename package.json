@@ -1,5 +1,5 @@
 {
-  "name": "norowa.dev",
+  "name": "noro.cc",
   "version": "2.0.0",
   "description": "My Personal Website.",
   "type": "module",
@@ -12,7 +12,7 @@
     "format": "prettier --ignore-path .gitignore --write src"
   },
   "keywords": [],
-  "author": "Andrew <contact@norowa.dev>",
+  "author": "Andrew <contact@noro.cc>",
   "license": "AGPL-3.0-only",
   "dependencies": {
     "astro": "^4.16.1",
@@ -30,10 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/norowachi/norowa.dev.git"
+    "url": "git+https://github.com/norowachi/noro.cc.git"
   },
   "bugs": {
-    "url": "https://github.com/norowachi/norowa.dev/issues"
+    "url": "https://github.com/norowachi/noro.cc/issues"
   },
-  "homepage": "https://github.com/norowachi/norowa.dev#readme"
+  "homepage": "https://github.com/norowachi/noro.cc#readme"
 }
