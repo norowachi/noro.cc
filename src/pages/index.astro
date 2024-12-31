@@ -2,61 +2,59 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
-function ReturnProjects(): {
+const Projects: {
 	name: string;
 	description: string;
 	demo?: { url: string; target?: string };
 	repo?: { url: string; target?: string };
 	status: "active" | "paused" | "discontinued" | "unknown";
-}[] {
-	return [
-		{
-			name: "Menherachan Bot",
-			description: "A multipurpose discord bot made with OpenianDev",
-			demo: {
-				url: "https://discord.com/oauth2/authorize?client_id=731143954032230453&scope=bot%20applications.commands",
-			},
-			repo: { url: "https://github.com/OpenianDevelopment/Menhera-Chan" },
-			status: "paused",
+}[] = [
+	{
+		name: "Menherachan Bot",
+		description: "A multipurpose discord bot made with OpenianDev",
+		demo: {
+			url: "https://discord.com/oauth2/authorize?client_id=731143954032230453&scope=bot%20applications.commands",
 		},
-		{
-			name: "Menherachan Dashboard",
-			description: "A dashboard for Menherachan Bot",
-			// demo: "https://menhera.noro.cc/",
-			status: "unknown",
-		},
-		{
-			name: "CDNE (next)",
-			description:
-				"little fuzzy/linear local image search site by route in nextjs",
-			demo: { url: "https://cdne.noro.cc/" },
-			repo: { url: "https://github.com/norowachi/cdne/tree/next" },
-			status: "active",
-		},
-		{
-			name: "CDNE (vue)",
-			description: "little fuzzy/linear local image search site by UI in vue",
-			demo: { url: "https://cdne.pages.dev" },
-			repo: { url: "https://github.com/norowachi/cdne/tree/vue" },
-			status: "active",
-		},
-		{
-			name: "Gitbot",
-			description:
-				"A Bot that integrates Github's Actions and API with Discord's commands",
-			demo: { url: "/gitbot", target: "_self" },
-			repo: { url: "/gitbot/repo" },
-			status: "active",
-		},
-		// always last
-		{
-			name: "You can see my other repos on github",
-			description: "just press the button below",
-			repo: { url: "https://github.com/norowachi?tab=repositories" },
-			status: "active",
-		},
-	];
-}
+		repo: { url: "https://github.com/OpenianDevelopment/Menhera-Chan" },
+		status: "paused",
+	},
+	{
+		name: "Menherachan Dashboard",
+		description: "A dashboard for Menherachan Bot",
+		// demo: "https://menhera.noro.cc/",
+		status: "unknown",
+	},
+	{
+		name: "CDNE (next)",
+		description:
+			"little fuzzy/linear local image search site by route in nextjs",
+		demo: { url: "https://cdne.noro.cc/" },
+		repo: { url: "https://github.com/norowachi/cdne/tree/next" },
+		status: "active",
+	},
+	{
+		name: "CDNE (vue)",
+		description: "little fuzzy/linear local image search site by UI in vue",
+		demo: { url: "https://cdne.pages.dev" },
+		repo: { url: "https://github.com/norowachi/cdne/tree/vue" },
+		status: "active",
+	},
+	{
+		name: "Gitbot",
+		description:
+			"A Bot that integrates Github's Actions and API with Discord's commands",
+		demo: { url: "/gitbot", target: "_self" },
+		repo: { url: "/gitbot/repo" },
+		status: "active",
+	},
+	// always last
+	{
+		name: "You can see my other repos on github",
+		description: "just press the button below",
+		repo: { url: "https://github.com/norowachi?tab=repositories" },
+		status: "active",
+	},
+];
 ---
 
 <BaseLayout>
@@ -77,7 +75,7 @@ function ReturnProjects(): {
 	</div>
 	<h2 class="text-2xl font-bold text-center">Projects</h2>
 	<section class="projects-section mt-8">
-		{ReturnProjects().map((item) => <ProjectCard input={item} />)}
+		{Projects.map((item) => <ProjectCard input={item} />)}
 	</section>
 	<a
 		class="fixed bottom-3 right-2 p-3 cursor-help bg-white dark:bg-black border-2 border-dotted border-black dark:border-white rounded-md hover:bg-black hover:dark:bg-white hover:text-white hover:dark:text-black hover:border-solid transition-all duration-700 hover:animate-pulse focus:animate-ping"
