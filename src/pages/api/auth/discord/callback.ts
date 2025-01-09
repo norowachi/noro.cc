@@ -1,30 +1,35 @@
 export const prerender = false;
 import { type APIRoute } from "astro";
+import axios from "axios";
 
 export const GET: APIRoute = async ({ request, cookies, redirect }) => {
   const url = new URL(request.url);
   const callback = decodeURIComponent(url.searchParams.get("state") || "/");
   const code = url.searchParams.get("code");
 
-  const result = await fetch("https://discord.com/api/oauth2/token", {
-    method: "POST",
-    body: JSON.stringify({
-      client_id: import.meta.env.DISCORD_CLIENT_ID,
-      client_secret: import.meta.env.DISCORD_CLIENT_SECRET,
-      grant_type: "authorization_code",
-      code,
-      redirect_uri: `${url.origin}/api/auth/discord/callback`,
-    }),
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-  }).catch(console.error);
+  if (!code) return redirect("/api/auth/discord/login", 302);
 
-  if (!result) return redirect("/api/auth/discord/login/10", 302);
+  const result = await axios
+    .post(
+      "https://discord.com/api/v10/oauth2/token",
+      {
+        client_id: import.meta.env.DISCORD_CLIENT_ID,
+        client_secret: import.meta.env.DISCORD_CLIENT_SECRET,
+        grant_type: "authorization_code",
+        code,
+        redirect_uri: `${url.origin}/api/auth/discord/callback`,
+      },
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      },
+    )
+    .catch(console.error);
 
-  const data = await result.json();
+  if (!result) return redirect("/api/auth/discord/login", 302);
 
-  console.error(data);
+  const data = result.data;
 
   cookies.set("token", data.access_token, {
     expires: new Date(Date.now() + data.expires_in * 1000),
