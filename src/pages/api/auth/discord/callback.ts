@@ -17,9 +17,9 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-  }).catch(() => {});
+  }).catch(console.log);
 
-  if (!result) return redirect("/api/auth/discord/login", 302);
+  if (!result) return redirect("/api/auth/discord/login/10", 302);
 
   const data = await result.json();
 
