@@ -7,6 +7,7 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
   const code = url.searchParams.get("code");
 
   const result = await fetch("https://discord.com/api/oauth2/token", {
+    method: "POST",
     body: JSON.stringify({
       client_id: import.meta.env.DISCORD_CLIENT_ID,
       client_secret: import.meta.env.DISCORD_CLIENT_SECRET,
