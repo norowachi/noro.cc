@@ -77,9 +77,9 @@ export const POST: APIRoute = async ({ request }) => {
       content: `<@${user.id}> | ${user.username}#${user.discriminator} | ${user.id}`,
       embeds: [embed],
     }),
-  }).catch(console.error);
+  });
 
-  if (!webhookMsg) {
+  if (!webhookMsg.ok) {
     return new Response(
       JSON.stringify({
         message: "Failed to send appeal",

@@ -23,15 +23,11 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
 
   const data = await result.json();
 
-  console.log(data);
-
-  console.log(cookies.get("token"));
-
   cookies.set("token", data.access_token, {
     expires: new Date(Date.now() + data.expires_in * 1000),
     // httpOnly: true,
     sameSite: "strict",
-    secure: true,
+    // secure: true,
     path: "/",
   });
 
