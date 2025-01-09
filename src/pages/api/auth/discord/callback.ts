@@ -24,7 +24,7 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
 
   const data = await result.json();
 
-  console.log(data);
+  console.error(data);
 
   cookies.set("token", data.access_token, {
     expires: new Date(Date.now() + data.expires_in * 1000),
