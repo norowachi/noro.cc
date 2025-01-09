@@ -18,17 +18,19 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-  }).catch(console.log);
+  }).catch(console.error);
 
   if (!result) return redirect("/api/auth/discord/login/10", 302);
 
   const data = await result.json();
 
+  console.log(data);
+
   cookies.set("token", data.access_token, {
     expires: new Date(Date.now() + data.expires_in * 1000),
     // httpOnly: true,
     sameSite: "strict",
-    // secure: true,
+    secure: true,
     path: "/",
   });
 
