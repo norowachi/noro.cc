@@ -1,4 +1,5 @@
 export const prerender = false;
+import { decryptToken } from "@/components/functions";
 import type { APIRoute } from "astro";
 
 export const POST: APIRoute = async ({ request }) => {
@@ -29,7 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const result = await fetch("https://discord.com/api/v10/users/@me", {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${decryptToken(token)}`,
     },
   }).catch(() => {});
 

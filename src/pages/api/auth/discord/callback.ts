@@ -1,4 +1,5 @@
 export const prerender = false;
+import { encryptToken } from "@/components/functions";
 import { type APIRoute } from "astro";
 
 export const GET: APIRoute = async ({ request, cookies, redirect }) => {
@@ -25,7 +26,9 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
 
   const data = await result.json();
 
-  cookies.set("token", data.access_token, {
+  if (!data.access_token) return redirect("/api/auth/discord/login", 302);
+
+  cookies.set("token", encryptToken(data.access_token), {
     expires: new Date(Date.now() + data.expires_in * 1000),
     // httpOnly: true,
     sameSite: "strict",
