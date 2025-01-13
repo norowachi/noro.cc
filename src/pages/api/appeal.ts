@@ -67,7 +67,11 @@ export const POST: APIRoute = async ({ request }) => {
         value: chunk + (i + 1 === a.length ? "" : "…"),
       });
     });
-  }
+  } else
+    embed.fields.push({
+      name: `Why should we revert this punishment?`,
+      value: appeal,
+    });
 
   const webhookMsg = await fetch(import.meta.env.DISCORD_APPEALS_WEBHOOK, {
     method: "POST",
@@ -75,7 +79,7 @@ export const POST: APIRoute = async ({ request }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      content: `<@${user.id}> | ${user.username}#${user.discriminator} | ${user.id}`,
+      content: `<@${user.id}> | \`@${user.username}${user.discriminator > 0 ? `#${user.discriminator}` : ""}\` | \`${user.id}\``,
       embeds: [embed],
     }),
   });
