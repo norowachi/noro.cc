@@ -2,94 +2,94 @@
 import { Icon } from "astro-icon/components";
 
 interface Props {
-  targetId?: string;
+	targetId?: string;
 }
 
 const { targetId } = Astro.props;
 ---
 
 <div
-  id="context-menu"
-  data-id={targetId}
-  data-state="closed"
-  class="absolute data-[state=closed]:hidden data-[state=open]:block rounded-md border p-1 animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 bg-white dark:bg-black text-black dark:text-white border-black dark:border-white"
+	id="context-menu"
+	data-id={targetId}
+	data-state="closed"
+	class="absolute data-[state=closed]:hidden data-[state=open]:block rounded-md border p-1 animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 bg-white dark:bg-black text-black dark:text-white border-black dark:border-white"
 >
-  <ul
-    class="flex flex-col rounded-md shadow-xl overflow-hidden hover:*:!bg-black hover:*:!text-white dark:hover:*:!bg-white dark:hover:*:!text-black"
-  >
-    <li class="context-menu-item" data-disabled>
-      Grats! You found the hidden menu!
-    </li>
-    <li onclick="HandleTheme()" class="context-menu-item" data-state>
-      <Icon name="sun" class="flex dark:hidden context-menu-icon" />
-      <Icon name="moon" class="hidden dark:flex context-menu-icon" />
-      Toggle Theme
-    </li>
-    <li
-      id="oneko-toggle"
-      onclick="HandleOneko()"
-      class="context-menu-item"
-      data-state
-    >
-      <Icon name="check" class="hidden context-menu-icon" />
-      Oneko
-    </li>
-  </ul>
+	<ul
+		class="flex flex-col rounded-md shadow-xl overflow-hidden hover:*:!bg-black hover:*:!text-white dark:hover:*:!bg-white dark:hover:*:!text-black"
+	>
+		<li class="context-menu-item" data-disabled>
+			Grats! You found the hidden menu!
+		</li>
+		<li onclick="HandleTheme()" class="context-menu-item" data-state>
+			<Icon name="sun" class="flex dark:hidden context-menu-icon" />
+			<Icon name="moon" class="hidden dark:flex context-menu-icon" />
+			Toggle Theme
+		</li>
+		<li
+			id="oneko-toggle"
+			onclick="HandleOneko()"
+			class="context-menu-item"
+			data-state
+		>
+			<Icon name="check" class="hidden context-menu-icon" />
+			Oneko
+		</li>
+	</ul>
 </div>
 
 <style>
-  .context-menu-item {
-    @apply relative flex cursor-pointer select-none items-center rounded-md px-2 py-1.5 data-[state]:py-1.5 data-[state]:pl-8 data-[state]:pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
-    &[data-state="checked"] > .context-menu-icon {
-      @apply flex;
-    }
-    .context-menu-icon {
-      @apply absolute left-2 h-3.5 w-3.5 items-center justify-center;
-    }
-  }
+	.context-menu-item {
+		@apply relative flex cursor-pointer select-none items-center rounded-md px-2 py-1.5 data-[state]:py-1.5 data-[state]:pl-8 data-[state]:pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
+		&[data-state="checked"] > .context-menu-icon {
+			@apply flex;
+		}
+		.context-menu-icon {
+			@apply absolute left-2 h-3.5 w-3.5 items-center justify-center;
+		}
+	}
 </style>
 
 <script>
-  const menu = document.getElementById("context-menu")!;
-  const target = menu.dataset.id
-    ? document.getElementById(menu.dataset.id)!
-    : document;
-  // hide menu if its open
-  const hideMenu = () => (menu.dataset.state = "closed");
-  document.onclick = hideMenu;
-  document.onauxclick = hideMenu;
-  // open the context menu
-  target.oncontextmenu = rightClick;
+	const menu = document.getElementById("context-menu")!;
+	const target = menu.dataset.id
+		? document.getElementById(menu.dataset.id)!
+		: document;
+	// hide menu if its open
+	const hideMenu = () => (menu.dataset.state = "closed");
+	document.onclick = hideMenu;
+	document.onauxclick = hideMenu;
+	// open the context menu
+	target.oncontextmenu = rightClick;
 
-  function rightClick(e: MouseEvent) {
-    e.preventDefault();
+	function rightClick(e: MouseEvent) {
+		e.preventDefault();
 
-    // Calculate the dimensions of the menu
-    //? Displaying it since `display: none` elements return 0
-    menu.style.display = "block";
-    const menuWidth = menu.clientWidth;
-    const menuHeight = menu.clientHeight;
-    menu.style.display = "";
+		// Calculate the dimensions of the menu
+		//? Displaying it since `display: none` elements return 0
+		menu.style.display = "block";
+		const menuWidth = menu.clientWidth;
+		const menuHeight = menu.clientHeight;
+		menu.style.display = "";
 
-    // Determine position for the menu
-    let posX = e.pageX;
-    let posY = e.pageY;
+		// Determine position for the menu
+		let posX = e.pageX;
+		let posY = e.pageY;
 
-    // Check if the menu goes beyond the right edge of the window
-    if (posX + menuWidth > window.innerWidth) {
-      posX = window.innerWidth - menuWidth;
-    }
+		// Check if the menu goes beyond the right edge of the window
+		if (posX + menuWidth > window.innerWidth) {
+			posX = window.innerWidth - menuWidth;
+		}
 
-    // Check if the menu goes beyond the bottom edge of the window
-    if (posY + menuHeight > window.innerHeight) {
-      posY = window.innerHeight - menuHeight;
-    }
+		// Check if the menu goes beyond the bottom edge of the window
+		if (posY + menuHeight > window.innerHeight) {
+			posY = window.innerHeight - menuHeight;
+		}
 
-    // Set the position of the menu
-    menu.style.left = posX + "px";
-    menu.style.top = posY + "px";
+		// Set the position of the menu
+		menu.style.left = posX + "px";
+		menu.style.top = posY + "px";
 
-    // show menu
-    menu.dataset.state = "open";
-  }
+		// show menu
+		menu.dataset.state = "open";
+	}
 </script>

@@ -7,6 +7,6 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon(), svelte()],
-  adapter: vercel(),
+	integrations: [tailwind(), icon(), svelte()],
+	adapter: vercel(),
 });

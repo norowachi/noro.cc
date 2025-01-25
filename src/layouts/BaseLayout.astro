@@ -71,13 +71,13 @@ const navbar = "navbar";
 		// toggle the "dark" class to html tag
 		document.documentElement.classList.toggle(
 			"dark",
-			newOption === "dark" || (!toggle && oldOption === "dark")
+			newOption === "dark" || (!toggle && oldOption === "dark"),
 		);
 		// toggle the "light" class
 		//? this is just cuz i dont wanna leave html tag with a [ class="" ] :3
 		document.documentElement.classList.toggle(
 			"light",
-			newOption === "light" || (!toggle && oldOption === "light")
+			newOption === "light" || (!toggle && oldOption === "light"),
 		);
 	}
 

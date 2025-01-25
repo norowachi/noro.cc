@@ -4,185 +4,189 @@ import GitbotLayout from "@/layouts/GitbotLayout.astro";
 ---
 
 <GitbotLayout title="Guide">
-  <AlertDialog show={false} icon="circle-check-big">
-    <Fragment slot="title">Successful Installation!</Fragment>
-    <Fragment slot="description"
-      >Congrats! You have successfully linked your account to Gitbot. Now
-      it&apos;s time to learn how to use it!</Fragment
-    >
-    <Fragment slot="button">Let&apos;s Go!</Fragment>
-  </AlertDialog>
+	<AlertDialog show={false} icon="circle-check-big">
+		<Fragment slot="title">Successful Installation!</Fragment>
+		<Fragment slot="description"
+			>Congrats! You have successfully linked your account to Gitbot. Now
+			it&apos;s time to learn how to use it!</Fragment
+		>
+		<Fragment slot="button">Let&apos;s Go!</Fragment>
+	</AlertDialog>
 
-  <main class="gitbot-guide mb-10">
-    <h1 class="font-black text-4xl text-center my-8 justify-center">
-      How to use Gitbot
-    </h1>
-    <div class="flex m-auto justify-center">
-      <p>
-        guide color code: <span class="text-red-600">required</span> |
-        <span class="text-green-600">optional</span>
-      </p>
-    </div>
-    <ol class="text-lg px-[6%] list-decimal">
-      <div id="getting-started">
-        <li class="font-semibold text-xl">Getting Started</li>
-        <div class="ml-5">
-          Link your Github Account using the <code>/link</code> command, either by
-          authorizing the github app or providing your own github token
-        </div>
-      </div>
-      <li class="font-semibold text-xl" id="issues">
-        Issues <code>/issue</code>
-      </li>
-      <div class="ml-5">
-        <ol class="list-disc">
-          <li>
-            <code>
-              /issues get <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">issue_number:</span>
-            </code>
-            - Get an issue by its number
-          </li>
-          <li>
-            <code>
-              /issues create <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">title:</span>
-              <span class="text-green-600">body:</span>
-              <span class="text-green-600">labels:</span>
-              <span class="text-green-600">assignees:</span>
-              <span class="text-green-600">milestone:</span>
-            </code>
-            - Create a new issue
-          </li>
-          <li>
-            <code>
-              /issues close <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">issue_number:</span>
-              <span class="text-green-600">reason:</span>
-            </code>
-            - Close an issue by its number
-          </li>
-          <li>
-            <code>
-              /issues update <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">issue_number:</span>
-            </code>
-            - Returns a link to edit the issue on Github
-          </li>
-        </ol>
-      </div>
-      <li class="font-semibold text-xl" id="pulls">
-        Pull Requests <code>/pulls</code>
-      </li>
-      <div class="ml-5">
-        <ol class="list-disc">
-          <li>
-            <code>
-              /pulls get <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">pull_number:</span>
-            </code>
-            - Get a PR by its number
-          </li>
-          <li>
-            <code>
-              /pulls create <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">head:</span>
-              <span class="text-red-600">base:</span>
-              <span class="text-green-600">title:</span>
-              <span class="text-green-600">head_repo:</span>
-              <span class="text-green-600">issue:</span>
-              <span class="text-green-600">body:</span>
-              <span class="text-green-600">draft:</span>
-              <span class="text-green-600">maintainer_can_modify:</span>
-            </code>- Create a new Pull Request
-            <div class="ml-5">
-              Note: Requires either
-              <code class="text-red-600">title:</code> or
-              <code class="text-red-600">issue:</code>
-            </div>
-          </li>
-          <li>
-            <code>
-              /pulls close <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">pull_number:</span>
-            </code>
-            - Close a PR by its number
-          </li>
-          <li>
-            <code>
-              /pulls update <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-              <span class="text-red-600">pull_number:</span>
-            </code>
-            - Returns a link to edit the PR on Github
-          </li>
-        </ol>
-      </div>
-      <li class="font-semibold text-xl" id="my">
-        My <code>/my</code>
-      </li>
-      <div>
-        this is a shortcut to get information about your stuff, basically
-        autofills the <code class="text-red-600">owner:</code> field with your (the
-        authorized user&apos;s) username
-      </div>
-      <div class="ml-5">
-        <ol class="list-disc">
-          <li>
-            <code>/my issues</code> - Group for the Issues commands
-          </li>
-          <li>
-            <code>/my pulls</code> - Group for the Pulls commands
-          </li>
-        </ol>
-      </div>
-      <li class="font-semibold text-xl" id="settings">
-        Settings <code>/settings</code>
-      </li>
-      <div class="ml-5">
-        <ol class="list-disc">
-          <li>
-            <code>
-              /settings issues <span class="text-red-600">owner:</span>
-              <span class="text-red-600">repo:</span>
-            </code>
-            - Manage Issues settings
-          </li>
-          <ol class="list-[lower-roman] ml-5">
-            <code class="text-green-600">auto_project:</code> - Automatically add
-            new issues created with the bot to a project (needs project node_id)
-            <br />
-            <code class="text-green-600">auto_assignees:</code> - Automatically assign
-            the new issues to users (logins comma separated)
-          </ol>
-          <li>
-            <code>/settings misc</code> - Manage General settings with the bot
-          </li>
-          <ol class="list-[lower-roman] ml-5">
-            <code class="text-green-600">ephermal:</code> - Whether the message should
-            be ephermal/hidden or not (default: false)
-          </ol>
-        </ol>
-      </div>
-    </ol>
-  </main>
+	<main class="gitbot-guide mb-10">
+		<h1 class="font-black text-4xl text-center my-8 justify-center">
+			How to use Gitbot
+		</h1>
+		<div class="flex m-auto justify-center">
+			<p>
+				guide color code: <span class="text-red-600">required</span> |
+				<span class="text-green-600">optional</span>
+			</p>
+		</div>
+		<ol class="text-lg px-[6%] list-decimal">
+			<div id="getting-started">
+				<li class="font-semibold text-xl">Getting Started</li>
+				<div class="ml-5">
+					Link your Github Account using the <code>/link</code> command, either by
+					authorizing the github app or providing your own github token
+				</div>
+			</div>
+			<li class="font-semibold text-xl" id="issues">
+				Issues <code>/issue</code>
+			</li>
+			<div class="ml-5">
+				<ol class="list-disc">
+					<li>
+						<code>
+							/issues get <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">issue_number:</span>
+						</code>
+						- Get an issue by its number
+					</li>
+					<li>
+						<code>
+							/issues create <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">title:</span>
+							<span class="text-green-600">body:</span>
+							<span class="text-green-600">labels:</span>
+							<span class="text-green-600">assignees:</span>
+							<span class="text-green-600">milestone:</span>
+						</code>
+						- Create a new issue
+					</li>
+					<li>
+						<code>
+							/issues close <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">issue_number:</span>
+							<span class="text-green-600">reason:</span>
+						</code>
+						- Close an issue by its number
+					</li>
+					<li>
+						<code>
+							/issues update <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">issue_number:</span>
+						</code>
+						- Returns a link to edit the issue on Github
+					</li>
+				</ol>
+			</div>
+			<li class="font-semibold text-xl" id="pulls">
+				Pull Requests <code>/pulls</code>
+			</li>
+			<div class="ml-5">
+				<ol class="list-disc">
+					<li>
+						<code>
+							/pulls get <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">pull_number:</span>
+						</code>
+						- Get a PR by its number
+					</li>
+					<li>
+						<code>
+							/pulls create <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">head:</span>
+							<span class="text-red-600">base:</span>
+							<span class="text-green-600">title:</span>
+							<span class="text-green-600">head_repo:</span>
+							<span class="text-green-600">issue:</span>
+							<span class="text-green-600">body:</span>
+							<span class="text-green-600">draft:</span>
+							<span class="text-green-600">maintainer_can_modify:</span>
+						</code>- Create a new Pull Request
+						<div class="ml-5">
+							Note: Requires either
+							<code class="text-red-600">title:</code> or
+							<code class="text-red-600">issue:</code>
+						</div>
+					</li>
+					<li>
+						<code>
+							/pulls close <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">pull_number:</span>
+						</code>
+						- Close a PR by its number
+					</li>
+					<li>
+						<code>
+							/pulls update <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+							<span class="text-red-600">pull_number:</span>
+						</code>
+						- Returns a link to edit the PR on Github
+					</li>
+				</ol>
+			</div>
+			<li class="font-semibold text-xl" id="my">
+				My <code>/my</code>
+			</li>
+			<div>
+				this is a shortcut to get information about your stuff, basically
+				autofills the <code class="text-red-600">owner:</code> field with your (the
+				authorized user&apos;s) username
+			</div>
+			<div class="ml-5">
+				<ol class="list-disc">
+					<li>
+						<code>/my issues</code> - Group for the Issues commands
+					</li>
+					<li>
+						<code>/my pulls</code> - Group for the Pulls commands
+					</li>
+				</ol>
+			</div>
+			<li class="font-semibold text-xl" id="settings">
+				Settings <code>/settings</code>
+			</li>
+			<div class="ml-5">
+				<ol class="list-disc">
+					<li>
+						<code>
+							/settings issues <span class="text-red-600">owner:</span>
+							<span class="text-red-600">repo:</span>
+						</code>
+						- Manage Issues settings
+					</li>
+					<ol class="list-[lower-roman] ml-5">
+						<code class="text-green-600">auto_project:</code> - Automatically add
+						new issues created with the bot to a project (needs project node_id)
+						<br />
+						<code class="text-green-600">auto_assignees:</code> - Automatically assign
+						the new issues to users (logins comma separated)
+					</ol>
+					<li>
+						<code>/settings misc</code> - Manage General settings with the bot
+					</li>
+					<ol class="list-[lower-roman] ml-5">
+						<code class="text-green-600">ephermal:</code> - Whether the message should
+						be ephermal/hidden or not (default: false)
+						<br />
+						<code class="text-green-600">simple:</code> - Whether the message should
+						be sent in a simple text only form or make use of embeds (default: false,
+						i.e. use embeds)
+					</ol>
+				</ol>
+			</div>
+		</ol>
+	</main>
 </GitbotLayout>
 
 <script>
-  const alert = document.getElementById("alert");
-  if (alert) {
-    if (location.search.includes("success")) {
-      alert.dataset.show = "true";
-      document
-        .getElementById("getting-started")
-        ?.classList.toggle("hidden", true);
-    } else alert.classList.toggle("!hidden", true);
-  }
+	const alert = document.getElementById("alert");
+	if (alert) {
+		if (location.search.includes("success")) {
+			alert.dataset.show = "true";
+			document
+				.getElementById("getting-started")
+				?.classList.toggle("hidden", true);
+		} else alert.classList.toggle("!hidden", true);
+	}
 </script>
