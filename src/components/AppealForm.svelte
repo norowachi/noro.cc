@@ -49,7 +49,7 @@
         <img
           src="https://cdn.discordapp.com/avatars/{id}/{avatar}"
           alt="avatar"
-          class="w-7 h-7 mx-[2px] rounded-full"
+          class="w-7 h-7 mx-2 rounded-full"
         />
         <span class="text-black dark:text-white">{name}</span>
         <a
