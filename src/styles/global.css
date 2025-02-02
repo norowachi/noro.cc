@@ -15,21 +15,6 @@
 	}
 }
 
-.project-card:hover {
-	&.active {
-		box-shadow: 0 0 10px 5px var(--project-card-active);
-	}
-	&.paused {
-		box-shadow: 0 0 10px 5px var(--project-card-paused);
-	}
-	&.discontinued {
-		box-shadow: 0 0 10px 5px var(--project-card-discontinued);
-	}
-	&.unknown {
-		box-shadow: 0 0 10px 5px var(--project-card-unknown);
-	}
-}
-
 a.link {
 	@apply text-blue-500	 underline;
 	&:hover {

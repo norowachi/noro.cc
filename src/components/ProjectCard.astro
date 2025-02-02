@@ -7,16 +7,13 @@ interface Props {
 		description: string;
 		demo?: { url: string; target?: string };
 		repo?: { url: string; target?: string };
-		status: "active" | "paused" | "discontinued" | "unknown";
 	};
 }
 
 const { input } = Astro.props;
 ---
 
-<div
-	class={`rounded-md border-2 border-black dark:border-white project-card ${input.status}`}
->
+<div class={`rounded-md border-2 border-black dark:border-white project-card`}>
 	<span class="pb-4 font-semibold text-lg">{input.name}</span>
 	<p class="text-md">{input.description}</p>
 	<div class="mt-2 flex flex-row justify-evenly">
