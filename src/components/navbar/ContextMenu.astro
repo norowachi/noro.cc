@@ -12,10 +12,10 @@ const { targetId } = Astro.props;
 	id="context-menu"
 	data-id={targetId}
 	data-state="closed"
-	class="absolute data-[state=closed]:hidden data-[state=open]:block rounded-md border p-1 animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 bg-white dark:bg-black text-black dark:text-white border-black dark:border-white"
+	class="absolute z-999999999 data-[state=closed]:hidden data-[state=open]:block rounded-md border p-1 animate-in fade-in-80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 bg-white dark:bg-black text-black dark:text-white border-black dark:border-white"
 >
 	<ul
-		class="flex flex-col rounded-md shadow-xl overflow-hidden hover:*:!bg-black hover:*:!text-white dark:hover:*:!bg-white dark:hover:*:!text-black"
+		class="flex flex-col rounded-md shadow-xl overflow-hidden *:hover:bg-black *:hover:text-white dark:*:hover:bg-white dark:*:hover:text-black"
 	>
 		<li class="context-menu-item" data-disabled>
 			Grats! You found the hidden menu!
@@ -37,7 +37,9 @@ const { targetId } = Astro.props;
 	</ul>
 </div>
 
-<style>
+<style type="postcss">
+	@reference 'tailwindcss';
+
 	.context-menu-item {
 		@apply relative flex cursor-pointer select-none items-center rounded-md px-2 py-1.5 data-[state]:py-1.5 data-[state]:pl-8 data-[state]:pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
 		&[data-state="checked"] > .context-menu-icon {
@@ -55,9 +57,10 @@ const { targetId } = Astro.props;
 		? document.getElementById(menu.dataset.id)!
 		: document;
 	// hide menu if its open
-	const hideMenu = () => (menu.dataset.state = "closed");
+	const hideMenu = (e: MouseEvent | PointerEvent) =>
+		e.target !== target && (menu.dataset.state = "closed");
 	document.onclick = hideMenu;
-	document.onauxclick = hideMenu;
+	document.oncontextmenu = hideMenu;
 	// open the context menu
 	target.oncontextmenu = rightClick;
 
