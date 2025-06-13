@@ -15,13 +15,13 @@
 	"author": "Andrew <contact@noro.cc>",
 	"license": "AGPL-3.0-only",
 	"dependencies": {
-		"@astrojs/vercel": "^8.1.4",
-		"@tailwindcss/vite": "^4.1.8",
-		"astro": "^5.8.1",
+		"@astrojs/vercel": "^8.1.5",
+		"@tailwindcss/vite": "^4.1.10",
+		"astro": "^5.9.3",
 		"astro-icon": "^1.1.5",
-		"svelte": "^5.33.10",
+		"svelte": "^5.34.1",
 		"tailwind-merge": "^2.6.0",
-		"tailwindcss": "^4.1.8",
+		"tailwindcss": "^4.1.10",
 		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
