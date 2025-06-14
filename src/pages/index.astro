@@ -9,11 +9,30 @@ const Projects: {
 	repo?: { url: string; target?: string };
 }[] = [
 	{
+		name: "Delta",
+		description: "API/Backend for a ChatApp (WIP)",
+		demo: { url: "https://delta.noro.cc" },
+		repo: { url: "https://github.com/DeltaApp/Delta" },
+	},
+	{
+		name: "DeltaApp",
+		description:
+			"Svelte & Tauri frontend application for the Delta API/Backend",
+		demo: { url: "https://delta.noro.cc" },
+		repo: { url: "https://github.com/DeltaApp/DeltaApp" },
+	},
+	{
 		name: "Gitbot",
 		description:
 			"A Bot that integrates Github's Actions and API with Discord's commands",
 		demo: { url: "/gitbot", target: "_self" },
 		repo: { url: "/gitbot/repo" },
+	},
+	{
+		name: "Teddie Dashboard",
+		description: "A dashboard made for Discord Bot Teddie",
+		demo: { url: "https://teddie.noro.cc" },
+		repo: { url: "https://github.com/norowachi/Teddie-Dash" },
 	},
 	{
 		name: "CDNE (next)",
@@ -36,7 +55,6 @@ const Projects: {
 	{
 		name: "Menherachan Dashboard",
 		description: "A dashboard for Menherachan Bot",
-		// demo: "https://menhera.noro.cc/",
 	},
 	// always last
 	{
