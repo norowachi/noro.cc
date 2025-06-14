@@ -39,9 +39,5 @@
 		"url": "https://github.com/norowachi/noro.cc/issues"
 	},
 	"homepage": "https://github.com/norowachi/noro.cc#readme",
-	"engines": {
-		"node": ">=23.0.0",
-		"pnpm": ">=10.11.0"
-	},
 	"packageManager": "pnpm@10.11.0"
 }
