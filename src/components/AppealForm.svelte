@@ -105,7 +105,7 @@
         id="reason"
         name="reason"
         maxlength="1024"
-        class="w-full h-32 rounded-2xl bg-gray-500 text-white text-center text-wrap p-2 mt-2 border-2 border-black dark:border-white focus:outline-none focus:border-purple-600 focus:dark:border-purple-800"
+        class="w-full h-32 rounded-2xl bg-gray-500 text-white text-left text-wrap p-2 mt-2 border-2 border-black dark:border-white focus:outline-none focus:border-purple-600 focus:dark:border-purple-800"
         required
       ></textarea>
     </div>
@@ -117,7 +117,7 @@
         id="appeal"
         name="appeal"
         maxlength="4084"
-        class="w-full h-32 rounded-2xl bg-gray-500 text-white text-center text-wrap p-2 mt-2 border-2 border-black dark:border-white focus:outline-none focus:border-purple-600 focus:dark:border-purple-800"
+        class="w-full h-32 rounded-2xl bg-gray-500 text-white text-left text-wrap p-2 mt-2 border-2 border-black dark:border-white focus:outline-none focus:border-purple-600 focus:dark:border-purple-800"
         required
       ></textarea>
     </div>
